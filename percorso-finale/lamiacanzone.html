@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TX2XT0JTGL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TX2XT0JTGL');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canzone AI - Matteo Pascali</title>
+    
+    <!-- ICONA DEL SITO -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><circle cx='32' cy='32' r='30' fill='%231a237e'/><path d='M32 14L10 25l22 11 22-11z' fill='%23ffffff'/><polygon points='32 14 54 25 32 36 10 25' fill='%23e0e0e0'/><path d='M18 30v12c0 4.4 6.3 8 14 8s14-3.6 14-8V30' fill='none' stroke='%23ffffff' stroke-width='3'/><path d='M48 27v15' stroke='%23ffca28' stroke-width='3' stroke-linecap='round'/><circle cx='48' cy='44' r='3.5' fill='%23ffca28'/></svg>">
+
+    <link rel="stylesheet" href="percorsofinale.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        /* Intestazione bloccata in alto */
+        .top-header {
+            width: 100%;
+            flex-shrink: 0;
+        }
+
+        /* Evidenziazione pagina attiva nella nav */
+        .top-nav a.active {
+            color: #ffca28 !important;
+            font-weight: 700;
+        }
+
+        /* MAIN CENTRATO AL CENTRO DELLO SCHERMO */
+        .main-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Wrapper dell'interfaccia */
+        .preview-wrapper {
+            width: 100%;
+            max-width: 680px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .project-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .project-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1a237e;
+            margin-bottom: 4px;
+        }
+
+        .project-subtitle {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #718096;
+            font-weight: 500;
+        }
+
+        /* Finestra Stile macOS */
+        .window-card {
+            width: 100%;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 20px;
+        }
+
+        .window-bar {
+            background: #ffffff;
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            border-bottom: 1px solid #edf2f7;
+        }
+
+        .window-dots {
+            display: flex;
+            gap: 7px;
+            position: absolute;
+            left: 18px;
+        }
+
+        .dot {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+        }
+
+        .dot-red { background-color: #ff5f56; }
+        .dot-yellow { background-color: #ffbd2e; }
+        .dot-green { background-color: #27c93f; }
+
+        .window-filename {
+            width: 100%;
+            text-align: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: #a0aec0;
+        }
+
+        /* Area Anteprima Cliccabile */
+        .window-body {
+            background-color: #f8fafc;
+            padding: 55px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+        }
+
+        .window-body:hover {
+            background-color: #f1f5f9;
+        }
+
+        .preview-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .play-icon-circle {
+            width: 52px;
+            height: 52px;
+            background: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            color: #1a237e;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.2s ease;
+        }
+
+        .window-body:hover .play-icon-circle {
+            transform: scale(1.08);
+        }
+
+        .preview-text {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        /* Box In basso (Download/Link) */
+        .info-card {
+            width: 100%;
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 20px 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        .info-details {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .info-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #718096;
+        }
+
+        .info-filename {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #1a202c;
+        }
+
+        /* Pulsante Scarica / Apri */
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #2b5c8f;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+
+        .btn-action:hover {
+            background-color: #1a237e;
+            transform: translateY(-1px);
+        }
+
+        /* SISTEMAZIONE E STILIZZAZIONE FOOTER IN BASSO */
+        footer {
+            width: 100%;
+            background-color: #1a237e;
+            color: #ffffff;
+            padding: 20px 0;
+            margin-top: auto;
+            flex-shrink: 0;
+            font-size: 0.9rem;
+        }
+
+        footer .footer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        footer .footer-left,
+        footer .footer-center,
+        footer .footer-right {
+            flex: 1;
+        }
+
+        footer .footer-left { text-align: left; }
+        footer .footer-center { text-align: center; }
+        footer .footer-right { text-align: right; }
+
+        footer p {
+            margin: 0;
+            color: #ffffff;
+        }
+
+        footer .footer-link {
+            color: #ffca28;
+            text-decoration: underline;
+            margin: 0;
+            display: inline-block;
+            transition: color 0.2s ease;
+        }
+
+        footer .footer-link:hover {
+            color: #ffffff;
+        }
+
+        @media (max-width: 768px) {
+            footer .footer-left,
+            footer .footer-center,
+            footer .footer-right {
+                flex: 100%;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 580px) {
+            .info-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            .btn-action {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGAZIONE SUPERIORE -->
+    <header class="top-header">
+        <div class="header-left">
+            <a href="../index.html" class="back-main-site">← Vai al Sito Principale</a>
+            <span class="logo">IL MIO PERCORSO FINALE</span>
+        </div>
+        <nav class="top-nav">
+            <ul>
+                <li><a href="percorsofinale.html#presentazione">Presentazione</a></li>
+                <li><a href="percorsofinale.html#canzone-ai" class="active">Canzone AI</a></li>
+                <li><a href="percorsofinale.html#antologia">Antologia</a></li>
+                <li><a href="percorsofinale.html#circuiti">Circuiti Elettrici</a></li>
+                <li><a href="percorsofinale.html#tela">La Mia Tela</a></li>
+                <li><a href="percorsofinale.html#rivoluzioni">Rivoluzioni Ind.</a></li>
+                <li><a href="percorsofinale.html#digitale">Paesi & Digitale</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- CONTENITORE CENTRATO AL CENTRO DELLO SCHERMO -->
+    <main class="main-container">
+        <div class="preview-wrapper">
+            
+            <div class="project-header">
+                <h1 class="project-title">La Mia Canzone</h1>
+                <span class="project-subtitle">FATTO DA MATTEO PASCALI</span>
+            </div>
+
+            <!-- Finestra principale dell'anteprima -->
+            <div class="window-card">
+                <div class="window-bar">
+                    <div class="window-dots">
+                        <span class="dot dot-red"></span>
+                        <span class="dot dot-yellow"></span>
+                        <span class="dot dot-green"></span>
+                    </div>
+                    <div class="window-filename">lamiacanzone.mp4</div>
+                </div>
+                
+                <a href="lamiacanzone.mp4" target="_blank" class="window-body">
+                    <div class="preview-content">
+                        <div class="play-icon-circle">
+                            <!-- Icona Play / Video -->
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
+                        </div>
+                        <span class="preview-text">Clicca per riprodurre il video</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Riquadro con il tasto di download/apertura -->
+            <div class="info-card">
+                <div class="info-details">
+                    <span class="info-label">FILE MULTIMEDIALE MP4</span>
+                    <span class="info-filename">lamiacanzone.mp4</span>
+                </div>
+                <a href="lamiacanzone.mp4" target="_blank" download class="btn-action">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    Scarica file
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER CON ELEMENTI SCAMBIATI -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-left">
+                <a href="../index.html" class="footer-link">← Vai al Sito Principale</a>
+            </div>
+            <div class="footer-center">
+                <p>MATTEO PASCALI a.s. 2022/2025</p>
+                <a href="https://icvernole.edu.it/" target="_blank" rel="noopener" class="footer-link-sub">Ic Diaz Vernole con Castrì</a>
+            </div>
+            <div class="footer-right">
+                <a href="../informativaprivacy.html" class="footer-link">Informativa Privacy</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

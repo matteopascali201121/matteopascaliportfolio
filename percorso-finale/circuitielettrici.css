@@ -1,0 +1,272 @@
+/* RESET E STILI DI BASE */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: #2c3e50;
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ==========================================================================
+   2. HEADER E NAVIGAZIONE SUPERIORE (COPIATO ESATTAMENTE DA PERCORSOFINALE)
+   ========================================================================== */
+.top-header {
+    background-color: #1a237e; /* Blu scuro accademico */
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.back-main-site {
+    background-color: rgba(255, 255, 255, 0.15);
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.back-main-site:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    color: #ffca28; /* Accento oro */
+}
+
+.top-nav ul {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+}
+
+.top-nav a {
+    color: #e0e0e0;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.top-nav a:hover,
+.top-nav a.active {
+    color: #ffca28;
+}
+
+/* ==========================================================================
+   CONTENUTO CENTRATO E SCHEDE
+   ========================================================================== */
+.main-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    width: 100%;
+}
+
+.preview-wrapper {
+    width: 100%;
+    max-width: 760px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.project-header {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.project-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #1a237e;
+    margin-bottom: 6px;
+}
+
+.project-subtitle {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1.8px;
+    color: #718096;
+    font-weight: 600;
+}
+
+/* SCHEDE macOS SINGOLE */
+.window-card {
+    width: 100%;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+}
+
+.window-bar {
+    background: #ffffff;
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    border-bottom: 1px solid #edf2f7;
+    height: 38px;
+}
+
+.window-dots {
+    display: flex;
+    gap: 7px;
+    position: absolute;
+    left: 18px;
+}
+
+.dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+}
+
+.dot-red { background-color: #ff5f56; }
+.dot-yellow { background-color: #ffbd2e; }
+.dot-green { background-color: #27c93f; }
+
+.window-body {
+    background-color: #ffffff;
+    padding: 30px 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.image-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #1a237e;
+    text-align: center;
+    margin: 0;
+}
+
+.circuit-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e0e0e0;
+}
+
+/* ==========================================================================
+   7. FOOTER
+   ========================================================================== */
+footer {
+    background-color: #1a237e;
+    color: white;
+    text-align: center;
+    padding: 25px 20px;
+    margin-top: 50px;
+    font-size: 0.9rem;
+}
+
+footer .footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+footer .footer-left,
+footer .footer-center,
+footer .footer-right {
+    flex: 1;
+}
+
+footer .footer-left {
+    text-align: left;
+}
+
+footer .footer-center {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+footer .footer-right {
+    text-align: right;
+}
+
+footer p {
+    margin: 0;
+}
+
+.footer-link {
+    color: #ffca28;
+    text-decoration: underline;
+    display: inline-block;
+}
+
+.footer-link-sub {
+    color: #ffca28;
+    text-decoration: underline;
+    font-size: 0.85rem;
+    transition: opacity 0.2s ease;
+}
+
+.footer-link-sub:hover {
+    opacity: 0.8;
+}
+
+/* MEDIA QUERIES */
+@media (max-width: 768px) {
+    .top-header {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .top-nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    footer .footer-left,
+    footer .footer-center,
+    footer .footer-right {
+        flex: 100%;
+        text-align: center;
+    }
+}
