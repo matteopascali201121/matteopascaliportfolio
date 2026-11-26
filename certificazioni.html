@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TX2XT0JTGL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-TX2XT0JTGL');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Attestati & Certificazioni — Matteo Pascali</title>
+  
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231e2d3d'/><text x='50%' y='55%' dominant-baseline='central' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-size='45' font-weight='bold'>MP</text></svg>">
+
+  <link rel="stylesheet" href="certificazioni.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet" />
+
+  <!-- Supabase JS Client CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    /* STILI MODALE DI AUTENTICAZIONE */
+    .auth-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(8, 13, 26, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .auth-card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 16px;
+      padding: 36px;
+      max-width: 440px;
+      width: 100%;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+      text-align: center;
+      position: relative;
+    }
+
+    .auth-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: #38bdf8;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+
+    .auth-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: #ffffff;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .auth-sub {
+      color: #94a3b8;
+      font-size: 0.88rem;
+      line-height: 1.55;
+      margin-bottom: 24px;
+    }
+
+    .auth-input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .auth-input-group input {
+      width: 100%;
+      padding: 12px 14px;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      color: #ffffff;
+      font-size: 0.95rem;
+      outline: none;
+      box-sizing: border-box;
+      transition: border-color 0.2s;
+    }
+
+    .auth-input-group input:focus {
+      border-color: #38bdf8;
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25);
+    }
+
+    .auth-btn {
+      width: 100%;
+      padding: 12px;
+      background-color: #0284c7;
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .auth-btn:hover {
+      background-color: #0369a1;
+    }
+
+    .auth-error {
+      color: #f87171;
+      font-size: 0.85rem;
+      margin-top: 8px;
+      display: none;
+    }
+
+    .auth-footer {
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid #334155;
+      font-size: 0.82rem;
+      color: #94a3b8;
+    }
+
+    .auth-footer a {
+      color: #38bdf8;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .auth-footer a:hover {
+      text-decoration: underline;
+    }
+
+    body.modal-open {
+      overflow: hidden !important;
+    }
+  </style>
+</head>
+<body class="modal-open">
+
+  <!-- POPUP AUTENTICAZIONE INCHIUDIBILE -->
+  <div id="authModal" class="auth-overlay">
+    <div class="auth-card">
+      <div class="auth-badge">AREA RISERVATA</div>
+      <h2 class="auth-title">Certificazioni</h2>
+      <p class="auth-sub">Inserisci la password di sicurezza per accedere alle certificazioni e ai documenti ufficiali.</p>
+
+      <form id="authForm" onsubmit="validateAuth(event)">
+        <div class="auth-input-group">
+          <input type="password" id="authPassword" placeholder="Inserisci la password..." required autocomplete="off" />
+          <button type="submit" id="authSubmitBtn" class="auth-btn">Accedi</button>
+        </div>
+        <div id="authError" class="auth-error">Password errata o errore di connessione. Riprova.</div>
+      </form>
+
+      <div class="auth-footer">
+        <p>Mi conosci ma ancora non hai la password per accedere? <a href="formtobypasspasswordcertificazioni.html">Richiedila qui</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAV BAR -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">MP</a>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../index.html#chi-sono">Chi sono</a></li>
+        <li><a href="#certificazioni">Certificazioni</a></li>
+        <li><a href="#contatti">Contatti</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <ul class="mobile-menu" id="mobile-menu">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../index.html#chi-sono">Chi sono</a></li>
+      <li><a href="#certificazioni">Certificazioni</a></li>
+      <li><a href="#contatti">Contatti</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <header class="hero hero--subpage" id="hero">
+    <div class="hero-content">
+      <div class="hero-layout">
+        
+        <div class="hero-text-block">
+          <p class="hero-eyebrow">Traguardi & Competenze</p>
+          <h1 class="hero-title">
+            Attestati &<br /><em>Certificazioni</em>
+          </h1>
+          <p class="hero-sub">La mia formazione continua: corsi, certificazioni linguistiche, informatiche e riconoscimenti conseguiti nel tempo.</p>
+          <div class="hero-ctas">
+            <a href="#certificazioni" class="btn-primary">Esplora i titoli</a>
+            <a href="../index.html" class="btn-ghost">Torna alla Home</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="hero-deco" aria-hidden="true">
+      <div class="deco-ring ring-1"></div>
+      <div class="deco-ring ring-2"></div>
+      <div class="deco-ring ring-3"></div>
+      <div class="deco-dot"></div>
+    </div>
+  </header>
+
+  <!-- SEZIONE CERTIFICAZIONI -->
+  <section class="section section--mid" id="certificazioni">
+    <div class="container">
+      <p class="label-eyebrow">Competenze Certificate</p>
+      <h2 class="section-title">I miei attestati</h2>
+      <p class="section-sub">Un quadro dei corsi completati e dei titoli ufficiali ottenuti.</p>
+
+      <!-- GRIGLIA CARTE ATTESTATI -->
+      <div class="cert-grid">
+
+        <!-- Scheda 1 -->
+        <div class="cert-card">
+          <div class="cert-header">
+            <span class="cert-icon">👨‍🔬</span>
+            <span class="cert-badge">Partecipazione - Open Lab</span>
+          </div>
+          <h3 class="cert-title">Partecipazione agli OPEN LAB</h3>
+          <p class="cert-issuer">Enrico Fermi Lecce - Via Merine 5</p>
+          <p class="cert-date">Rilasciato il: Sabato 23 Novembre 2024</p>
+          <p class="cert-desc">Attestato di partecipazione agli OPEN LAB di Liceo Scientifico Delle Scienze Applicate e Informatica e Telecomunicazioni.</p>
+          <div class="cert-footer">
+            <a href="attestatodipartecipazioneagliopenlab231124fermilecce.html" target="_blank" class="card-link">Visualizza validità attestato (PNG) →</a>
+          </div>
+        </div>
+
+        <!-- Scheda 2 -->
+        <div class="cert-card">
+          <div class="cert-header">
+            <span class="cert-icon">📊</span>
+            <span class="cert-badge">Partecipazione - Statistica 2026 </span>
+          </div>
+          <h3 class="cert-title">Attestato di partecipazione alle Olimpiadi Italiane di Statistica</h3>
+          <p class="cert-issuer">Enrico Fermi Lecce - Via Merine 5</p>
+          <p class="cert-date">Rilasciato il: Mercoledì 5 Maggio 2026</p>
+          <p class="cert-desc">Attestato di partecipazione alle Olimpiadi Italiane di Statistica a Livello Nazionale</p>
+          <div class="cert-footer">
+            <a href="attestatodipartecipazionealleolimpiadidistatitstica2026.html" target="_blank" class="card-link">Visualizza validità attestato (PNG) →</a>
+          </div>
+        </div>
+
+        <!-- Scheda 3 -->
+        <div class="cert-card">
+          <div class="cert-header">
+            <span class="cert-icon">📊</span>
+            <span class="cert-badge">Eccellenza - Statistica 2026 </span>
+          </div>
+          <h3 class="cert-title">Attestato di eccellenza alle Olimpiadi Italiane di Statistica</h3>
+          <p class="cert-issuer">Enrico Fermi Lecce - Via Merine 5</p>
+          <p class="cert-date">Rilasciato il: Mercoledì 27 Maggio 2026</p>
+          <p class="cert-desc">Attestato di eccellenza alle Olimpiadi Italiane di Statistica, per aver conquistato l'accesso alla seconda fase a squadre.</p>
+          <div class="cert-footer">
+            <a href="attestatodieccellenzaalleolimpiadidistatistica2026.html" target="_blank" class="card-link">Visualizza validità attestato (PNG) →</a>
+          </div>
+        </div>
+
+        <!-- Scheda 4 -->
+        <div class="cert-card">
+          <div class="cert-header">
+            <span class="cert-icon">📊</span>
+            <span class="cert-badge">Partecipazione - Studenti Lavoratori</span>
+          </div>
+          <h3 class="cert-title">Attestato di partecipazione al percorso formativo "Studenti Lavoratori - Formazione Generale (4 ore)"</h3>
+          <p class="cert-issuer">Enrico Fermi Lecce - Via Merine 5</p>
+          <p class="cert-date">Rilasciato il: Domenica 15 Novembre 2026</p>
+          <p class="cert-desc">Attestato di frequenza al percorso formativo "Studenti Lavoratori - Formazione Generale (4 ore)"</p>
+          <div class="cert-footer">
+            <a href="attestatodipartecipazionealpercorsoformativostudentilavoratori151126.html" target="_blank" class="card-link">Visualizza validità attestato (PNG) →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATTI -->
+  <section class="section" id="contatti">
+    <div class="container">
+      <div class="contatti-inner">
+        <p class="label-eyebrow">Parliamo</p>
+        <h2>Contatti</h2>
+        <p>Hai una domanda, una proposta per un qualsiasi progetto o vuoi semplicemente saperne di più? Scrivimi!</p>
+        <div class="contatti-buttons" style="display: flex; flex-direction: column; gap: 24px; align-items: center; width: 100%;">
+            
+            <!-- Categoria E-Mail -->
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 10px; width: 100%;">
+                <span style="font-size: 0.85rem; font-weight: 600; opacity: 0.7; text-transform: uppercase; letter-spacing: 1.5px;">E-mail</span>
+                <div style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
+                    <a href="mailto:matteo.pascali@fermilecce.edu.it" class="btn-primary">E-Mail Istituzionale</a>
+                    <a href="mailto:info.matteopascali@libero.it" class="btn-primary">E-Mail Ufficiale</a>
+                </div>
+            </div>
+
+            <!-- Categoria Social -->
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 10px; width: 100%;">
+                <span style="font-size: 0.85rem; font-weight: 600; opacity: 0.7; text-transform: uppercase; letter-spacing: 1.5px;">Social - Instagram</span>
+                <div style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
+                    <a href="https://instagram.com/matteo.2111" class="btn-primary">Private Profile</a>
+                    <a href="https://instagram.com/velour.graphics" class="btn-primary">Graphic Designer Profile</a>
+                </div>
+            </div>
+
+            <!-- Categoria Altro -->
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 10px; width: 100%;">
+                <span style="font-size: 0.85rem; font-weight: 600; opacity: 0.7; text-transform: uppercase; letter-spacing: 1.5px;">Altro</span>
+                <div style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
+                    <a href="https://unit.link/matteo.2111" class="btn-primary">Unit.Link</a>
+                </div>
+            </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="footer-logo">MP</span>
+        <p>Portfolio personale di Matteo Pascali. Studente, appassionato di tecnologia e comunicazione.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Sito</h4>
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../index.html#chi-sono">Chi sono</a></li>
+            <li><a href="../index.html#percorso">Percorso</a></li>
+            <li><a href="#certificazioni">Certificazioni</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Formazione</h4>
+          <ul>
+            <li><a href="https://icvernole.edu.it/">IC Diaz Vernole</a></li>
+            <li><a href="https://www.fermilecce.edu.it/">Fermi Lecce</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contatti</h4>
+          <ul>
+            <li><a href="#contatti">Scrivimi</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© Matteo Pascali 2026 — Tutti i diritti riservati</p>
+      <div class="footer-links">
+        <a href="../informativaprivacy.html">Informativa Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // INIZIALIZZAZIONE SUPABASE (Stesso progetto, tabella dedicata 'cert_passwords')
+    const SUPABASE_URL = 'https://ucnwhkynctrrvsbezwti.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVjbndoa3luY3RycnZzYmV6d3RpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE5NDgzMzAsImV4cCI6MjEwNzUyNDMzMH0.RqhJlK3T7kMaEHgHBu2gxe9RWP_OU9spzSXYhR8t340';
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    // Controlla la sessione specifica per le certificazioni all'avvio
+    if (sessionStorage.getItem("certificazioni_authenticated") === "true") {
+      document.getElementById("authModal").style.display = "none";
+      document.body.classList.remove("modal-open");
+    }
+
+    async function validateAuth(e) {
+      e.preventDefault();
+      const val = document.getElementById("authPassword").value.trim();
+      const err = document.getElementById("authError");
+      const btn = document.getElementById("authSubmitBtn");
+
+      err.style.display = "none";
+      btn.disabled = true;
+      btn.textContent = "Verifica in corso...";
+
+      try {
+        // Interroga la tabella separata 'cert_passwords' su Supabase
+        const { data, error } = await supabaseClient
+          .from('cert_passwords')
+          .select('password')
+          .eq('password', val)
+          .maybeSingle();
+
+        if (error) {
+          console.error("Errore Supabase:", error);
+          throw error;
+        }
+
+        if (data) {
+          // Password valida trovata nella tabella delle certificazioni
+          sessionStorage.setItem("certificazioni_authenticated", "true");
+          document.getElementById("authModal").style.display = "none";
+          document.body.classList.remove("modal-open");
+        } else {
+          // Password non trovata
+          err.style.display = "block";
+          document.getElementById("authPassword").value = "";
+        }
+      } catch (ex) {
+        err.textContent = "Errore di connessione al database. Riprova.";
+        err.style.display = "block";
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "Accedi";
+      }
+    }
+  </script>
+</body>
+</html>
