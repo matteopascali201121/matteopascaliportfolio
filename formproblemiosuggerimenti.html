@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Segnala un problema o suggerimento — Matteo Pascali</title>
+  
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231e2d3d'/><text x='50%' y='55%' dominant-baseline='central' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-size='45' font-weight='bold'>MP</text></svg>">
+
+  <link rel="stylesheet" href="formproblemiosuggerimenti.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body class="feedback-page">
+
+  <!-- NAVBAR SUPERIORE -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="../index.html" class="brand-logo">MP</a>
+      <a href="../index.html" class="back-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Torna alla Home
+      </a>
+    </div>
+  </header>
+
+  <!-- FORM A PASSAGGI -->
+  <main class="form-wrapper">
+    <div class="form-card">
+      
+      <div class="form-icon-box">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+          <line x1="9" y1="10" x2="15" y2="10"></line>
+          <line x1="12" y1="7" x2="12" y2="13"></line>
+        </svg>
+      </div>
+
+      <div class="form-header">
+        <h2>Invia un feedback</h2>
+        <p id="step-indicator">Passo 1 di 2</p>
+      </div>
+
+      <!-- Link Formspree aggiornato -->
+      <form id="feedback-form" action="https://formspree.io/f/xwlkdelb" method="POST">
+        
+        <!-- PASSO 1 -->
+        <div id="step-1" class="form-step active-step">
+          <div class="field-group">
+            <label for="email">La tua email di contatto</label>
+            <input type="email" id="email" name="email" placeholder="nome@esempio.it" required />
+          </div>
+
+          <div class="field-group">
+            <label for="type">Cosa vuoi segnalare?</label>
+            <select id="type" name="type" required>
+              <option value="" disabled selected>Seleziona un'opzione...</option>
+              <option value="problema">Problema / Bug sul sito</option>
+              <option value="suggerimento">Suggerimento / Idea</option>
+              <option value="altro">Altro</option>
+            </select>
+          </div>
+
+          <button type="button" id="btn-next" class="submit-button">Avanti &rarr;</button>
+        </div>
+
+        <!-- PASSO 2 -->
+        <div id="step-2" class="form-step">
+          <div class="field-group">
+            <label for="message">Descrivi i dettagli</label>
+            <textarea id="message" name="message" rows="4" placeholder="Scrivi qui il tuo messaggio..." required></textarea>
+          </div>
+
+          <div class="button-row">
+            <button type="button" id="btn-back" class="secondary-button">&larr; Indietro</button>
+            <button type="submit" id="submit-btn" class="submit-button">Invia segnalazione</button>
+          </div>
+        </div>
+
+        <div id="form-status" class="status-box"></div>
+
+      </form>
+    </div>
+  </main>
+
+  <script>
+    const step1 = document.getElementById("step-1");
+    const step2 = document.getElementById("step-2");
+    const btnNext = document.getElementById("btn-next");
+    const btnBack = document.getElementById("btn-back");
+    const stepIndicator = document.getElementById("step-indicator");
+
+    const emailInput = document.getElementById("email");
+    const typeSelect = document.getElementById("type");
+
+    // Passaggio da Step 1 a Step 2
+    btnNext.addEventListener("click", function() {
+      if (emailInput.checkValidity() && typeSelect.checkValidity()) {
+        step1.classList.remove("active-step");
+        step2.classList.add("active-step");
+        stepIndicator.innerText = "Passo 2 di 2";
+      } else {
+        emailInput.reportValidity();
+        typeSelect.reportValidity();
+      }
+    });
+
+    // Ritorno da Step 2 a Step 1
+    btnBack.addEventListener("click", function() {
+      step2.classList.remove("active-step");
+      step1.classList.add("active-step");
+      stepIndicator.innerText = "Passo 1 di 2";
+    });
+
+    // Invio AJAX
+    const form = document.getElementById("feedback-form");
+    const status = document.getElementById("form-status");
+    const submitBtn = document.getElementById("submit-btn");
+
+    form.addEventListener("submit", async function (event) {
+      event.preventDefault();
+      
+      submitBtn.disabled = true;
+      submitBtn.innerText = "Invio in corso...";
+      status.style.display = "none";
+      status.className = "status-box";
+
+      const data = new FormData(form);
+
+      try {
+        const response = await fetch(form.action, {
+          method: form.method,
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          status.innerText = "Messaggio inviato con successo! Grazie per il supporto.";
+          status.classList.add("success");
+          status.style.display = "block";
+          form.reset();
+          setTimeout(() => {
+            step2.classList.remove("active-step");
+            step1.classList.add("active-step");
+            stepIndicator.innerText = "Passo 1 di 2";
+          }, 2000);
+        } else {
+          status.innerText = "Errore durante l'invio. Verifica le impostazioni su Formspree.";
+          status.classList.add("error");
+          status.style.display = "block";
+        }
+      } catch (error) {
+        status.innerText = "Errore di connessione. Riprova più tardi.";
+        status.classList.add("error");
+        status.style.display = "block";
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerText = "Invia segnalazione";
+      }
+    });
+  </script>
+
+</body>
+</html>

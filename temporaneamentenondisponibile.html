@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sito Non Disponibile</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for Serif (Cinzel/Playfair) and Sans-serif (Inter) matching image style -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandDark: '#1E1E1E',   /* Dark charcoal background from image */
+                        brandTeal: '#1ADDB2',   /* Vibrant teal/cyan accent color */
+                        brandTealHover: '#16C49E',
+                        brandText: '#FFFFFF'
+                    },
+                    fontFamily: {
+                        serif: ['Cinzel', 'Georgia', 'serif'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #1E1E1E;
+            color: #FFFFFF;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-brandTeal selection:text-brandDark flex flex-col min-h-screen justify-between p-6 md:p-12">
+
+    <!-- Main Content Centered -->
+    <main class="w-full max-w-3xl mx-auto my-auto py-16 flex flex-col items-center text-center px-4">
+        
+        <!-- Status Badge / Decorative Accent -->
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brandTeal/10 border border-brandTeal/30 text-brandTeal text-xs tracking-widest uppercase mb-8">
+            <span class="w-2 h-2 rounded-full bg-brandTeal animate-pulse"></span>
+            Manutenzione
+        </div>
+
+        <!-- Main Title with exact requested text & serif style -->
+        <h1 class="text-3xl md:text-5xl lg:text-6xl font-serif tracking-wider uppercase leading-tight mb-10 text-white font-normal">
+            Il sito è temporaneamente<br class="hidden sm:inline" /> non disponibile
+        </h1>
+
+        <!-- Subtitle message -->
+        <p class="text-gray-400 text-sm md:text-base max-w-md font-light mb-10 leading-relaxed">
+            Stiamo effettuando alcuni aggiornamenti tecnici per migliorare la tua esperienza. Torna a trovarci a breve.
+        </p>
+
+        <!-- Primary Action Button with exact Teal accent color -->
+        <a href="/" 
+           class="inline-block bg-brandTeal hover:bg-brandTealHover text-brandDark font-semibold text-sm md:text-base px-8 py-4 rounded-xl shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 uppercase tracking-wider">
+            Torna al sito Principale
+        </a>
+    </main>
+
+    <!-- Footer with specified copyright and privacy policy link -->
+    <footer class="w-full max-w-6xl mx-auto pt-8 border-t border-white/10 text-xs md:text-sm text-gray-400 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div class="text-left font-light">
+            © Matteo Pascali 2026 — Tutti i diritti riservati
+        </div>
+        <div>
+            <a href="informativaprivacy.html" 
+               class="hover:text-brandTeal transition-colors duration-200 underline underline-offset-4">
+                Informativa Privacy
+            </a>
+        </div>
+    </footer>
+
+</body>
+</html>

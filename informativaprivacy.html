@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Informativa sulla Privacy — Matteo Pascali</title>
+  
+  <!-- Favicon identica a quella del sito principale -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231e2d3d'/><text x='50%' y='55%' dominant-baseline='central' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-size='45' font-weight='bold'>MP</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ============================
+       TOKENS DALSITO PRINCIPALE
+       ============================ */
+    :root {
+      --bg:           #0E1525;
+      --surface:      #162038;
+      --surface-2:    #1C2B4A;
+      --surface-3:    #243459;
+      --border:       #2A3F66;
+      --border-light: #3A5280;
+      --accent:       #4D9FFF;
+      --accent-light: #7DBFFF;
+      --accent-dim:   rgba(77, 159, 255, 0.13);
+      --text:         #DCE8FF;
+      --text-muted:   #7A99CC;
+      --text-faint:   #4A6699;
+      --white:        #FFFFFF;
+
+      --font-body:    'Inter', system-ui, sans-serif;
+      --font-display: 'Playfair Display', Georgia, serif;
+
+      --radius:       14px;
+      --radius-sm:    7px;
+      --t:            0.22s ease;
+      --max-w:        1100px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color var(--t), opacity var(--t);
+    }
+
+    a:hover {
+      opacity: 0.8;
+      text-decoration: underline;
+    }
+
+    /* Navbar identica al sito principale */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(14, 21, 37, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 20px;
+      height: 64px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Logo MP identico al sito principale */
+    .nav-logo {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.35rem;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .nav-logo:hover {
+      text-decoration: none;
+      opacity: 0.9;
+    }
+
+    .back-link {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color var(--t);
+    }
+
+    .back-link:hover {
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    /* Main Content Area */
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 4rem 1.25rem;
+    }
+
+    .page-header {
+      margin-bottom: 3rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2rem;
+    }
+
+    .subtitle {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      color: var(--white);
+    }
+
+    .last-updated {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Sezioni dell'Articolo */
+    article section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      transition: border-color var(--t), background-color var(--t);
+    }
+
+    article section:hover {
+      border-color: var(--border-light);
+      background-color: var(--surface-2);
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+
+    p {
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    ul {
+      list-style-type: disc;
+      padding-left: 1.5rem;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-box {
+      background: var(--surface-3);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      padding: 1.25rem;
+      margin-top: 1rem;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .contact-box strong {
+      color: var(--white);
+    }
+
+    /* Footer identico al footer-bottom del sito principale */
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 2rem 1.25rem;
+      text-align: center;
+      color: var(--text-faint);
+      font-size: 0.8rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      main {
+        padding: 2.5rem 1rem;
+      }
+      article section {
+        padding: 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">MP</a>
+      <a href="index.html" class="back-link">← Torna al Portfolio</a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main>
+    <div class="page-header">
+      <p class="subtitle">Informativa Legale</p>
+      <h1>Privacy Policy</h1>
+      <p class="last-updated">Ultimo aggiornamento: Settembre 2026</p>
+    </div>
+
+    <article>
+      <!-- Sezione 1 -->
+      <section>
+        <h2>1. Titolare del Trattamento</h2>
+        <p>
+          Il Titolare del trattamento dei dati raccolti tramite questo sito web personale/portfolio è:
+        </p>
+        <div class="contact-box">
+          <strong>Matteo Pascali</strong><br>
+          Studente presso I.I.S.S. "Enrico Fermi" — Lecce (LE)<br>
+          Email ufficiale: <a href="mailto:info.matteopascali@libero.it">info.matteopascali@libero.it</a><br>
+          Email istituzionale: <a href="mailto:matteo.pascali@fermilecce.edu.it">matteo.pascali@fermilecce.edu.it</a>
+        </div>
+      </section>
+
+      <!-- Sezione 2 -->
+      <section>
+        <h2>2. Tipologia di Dati Raccolti</h2>
+        <p>
+          Questo sito è un portfolio di presentazione personale, didattica e professionale. La raccolta dei dati personali è ridotta al minimo essenziale:
+        </p>
+        <ul>
+          <li><strong>Dati di navigazione:</strong> I sistemi informatici e le procedure software preposte al funzionamento di questo sito web (ospitato tramite la piattaforma Netlify) acquisiscono automaticamente alcuni dati tecnici impliciti nell'uso dei protocolli di comunicazione Internet (es. indirizzi IP, tipo di browser, orario della richiesta).</li>
+          <li><strong>Dati forniti volontariamente dall'utente:</strong> L'invio facoltativo e volontario di posta elettronica agli indirizzi indicati nella sezione "Contatti" comporta l'acquisizione dell'indirizzo del mittente (necessario per rispondere) e degli eventuali altri dati personali inseriti nel messaggio.</li>
+        </ul>
+      </section>
+
+      <!-- Sezione 3 -->
+      <section>
+        <h2>3. Finalità e Base Giuridica del Trattamento</h2>
+        <p>I dati personali sono trattati per le seguenti finalità:</p>
+        <ul>
+          <li>Consentire la corretta visualizzazione, navigazione e fruizione dei contenuti del sito web.</li>
+          <li>Rispondere ad eventuali richieste di contatto, informazioni o proposte ricevute via email.</li>
+        </ul>
+        <p>
+          La base giuridica del trattamento risiede nel legittimo interesse del Titolare a garantire la sicurezza del sito e a rispondere alle comunicazioni ricevute (art. 6, par. 1, lett. f del GDPR).
+        </p>
+      </section>
+
+      <!-- Sezione 4 -->
+      <section>
+        <h2>4. Modalità di Trattamento e Conservazione</h2>
+        <p>
+          Il trattamento viene effettuato mediante strumenti informatici e telematici, con logiche strettamente correlate alle finalità sopra indicate e nel rispetto delle misure di sicurezza idonee a prevenire la perdita dei dati, usi illeciti o non autorizzati.
+        </p>
+        <p>
+          I dati inviati tramite email verranno conservati esclusivamente per il tempo necessario a gestire la richiesta dell'utente e per le eventuali esigenze di contatto future.
+        </p>
+      </section>
+
+      <!-- Sezione 5 -->
+      <section>
+        <h2>5. Cookie Policy e Servizi Terzi</h2>
+        <p>
+          Questo sito web <strong>non utilizza cookie di profilazione</strong> o tracciamento pubblicitario. 
+        </p>
+        <p>
+          L'hosting del sito è fornito da <strong>Netlify, Inc.</strong>, che può raccogliere log di sistema aggregati per motivi di sicurezza e stabilità dell'infrastruttura. Per saperne di più, è possibile consultare la <a href="https://www.netlify.com/privacy/" target="_blank" rel="noopener">Privacy Policy di Netlify</a>.
+        </p>
+      </section>
+
+      <!-- Sezione 6 -->
+      <section>
+        <h2>6. Diritti dell'Interessato</h2>
+        <p>
+          In qualità di interessato, ai sensi del Regolamento UE 2016/679 (GDPR), hai il diritto in qualsiasi momento di:
+        </p>
+        <ul>
+          <li>Chiedere la conferma dell'esistenza o meno di dati personali che ti riguardano;</li>
+          <li>Chiederne l'accesso, la rettifica, l'integrazione o la cancellazione;</li>
+          <li>Opporti al trattamento o chiederne la limitazione.</li>
+        </ul>
+        <p>
+          Per esercitare tali diritti, puoi inviare una semplice comunicazione via email a <a href="mailto:info.matteopascali@libero.it">info.matteopascali@libero.it</a>.
+        </p>
+      </section>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>© Matteo Pascali 2026 — Tutti i diritti riservati</p>
+  </footer>
+
+</body>
+</html>
