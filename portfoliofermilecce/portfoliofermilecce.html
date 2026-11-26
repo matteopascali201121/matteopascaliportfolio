@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TX2XT0JTGL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-TX2XT0JTGL');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio Scolastico — Matteo Pascali</title>
+  
+  <!-- Favicon SVG con iniziali MP -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231e2d3d'/><text x='50%' y='55%' dominant-baseline='central' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-size='45' font-weight='bold'>MP</text></svg>">
+
+  <!-- Collegamento al nuovo file CSS unico -->
+  <link rel="stylesheet" href="portfoliofermilecce.css" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet" />
+
+  <!-- Supabase JS Client CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="modal-open">
+
+  <!-- POPUP AUTENTICAZIONE INCHIUDIBILE -->
+  <div id="authModal" class="auth-overlay">
+    <div class="auth-card">
+      <div class="auth-badge">AREA RISERVATA</div>
+      <h2 class="auth-title">Portfolio Fermi Lecce</h2>
+      <p class="auth-sub">Inserisci la password di sicurezza per accedere al portfolio e ai documenti scolastici.</p>
+
+      <form id="authForm" onsubmit="validateAuth(event)">
+        <div class="auth-input-group">
+          <input type="password" id="authPassword" placeholder="Inserisci la password..." required autocomplete="off" />
+          <button type="submit" id="authSubmitBtn" class="auth-btn">Accedi</button>
+        </div>
+        <div id="authError" class="auth-error">Password errata o errore di connessione. Riprova.</div>
+      </form>
+
+      <div class="auth-footer">
+        <p>Mi conosci ma ancora non hai la password per accedere? <a href="formtobypasspasswordportfoliofermilecce.html">Richiedila qui</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">MP</a>
+      <ul class="nav-links">
+        <li><a href="../index.html">← Home</a></li>
+        <li><a href="#1ated">1° Anno</a></li>
+        <li><a href="#2ated">2° Anno</a></li>
+        <li><a href="#3ated">3° Anno</a></li>
+        <li><a href="#4ated">4° Anno</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <ul class="mobile-menu" id="mobile-menu">
+      <li><a href="../index.html">← Torna al sito principale</a></li>
+      <li><a href="#1ated">1° Anno</a></li>
+      <li><a href="#2ated">2° Anno</a></li>
+      <li><a href="#3ated">3° Anno</a></li>
+      <li><a href="#4ated">4° Anno</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO PORTFOLIO -->
+  <header class="hero pf-hero">
+    <div class="hero-content">
+      <p class="hero-eyebrow">Portfolio scolastico</p>
+      <h1 class="hero-title">
+        Matteo<br /><em>Pascali</em>
+      </h1>
+      <p class="hero-sub">I.I.S.S. Enrico Fermi · Lecce · LSAS Quadriennale</p>
+      <div class="hero-ctas">
+        <a href="#1ated" class="btn-primary">Esplora i lavori</a>
+        <a href="../index.html" class="btn-ghost">← Torna al sito principale</a>
+      </div>
+    </div>
+    <div class="hero-deco" aria-hidden="true">
+      <div class="deco-ring ring-1"></div>
+      <div class="deco-ring ring-2"></div>
+      <div class="deco-ring ring-3"></div>
+      <div class="deco-dot"></div>
+    </div>
+  </header>
+
+  <!-- INTRO -->
+  <section class="section pf-intro">
+    <div class="container">
+      <div class="pf-intro-grid">
+        <div>
+          <p class="label-eyebrow">Il percorso</p>
+          <h2 class="pf-intro-title">Quattro anni di crescita,<br/>anno per anno</h2>
+          <p class="pf-intro-text">Questa pagina raccoglie tutto il mio lavoro scolastico all'Istituto Fermi di Lecce. Relazioni tecniche, presentazioni, esposizioni e attività creative — ogni sezione è un capitolo del mio percorso nel Liceo Scientifico delle Scienze Applicate Quadriennale.</p>
+        </div>
+        <div class="pf-stats">
+          <div class="pf-stat">
+            <span class="pf-stat-n">4</span>
+            <span class="pf-stat-l">anni di percorso</span>
+          </div>
+          <div class="pf-stat">
+            <span class="pf-stat-n">LSAS</span>
+            <span class="pf-stat-l">indirizzo</span>
+          </div>
+          <div class="pf-stat pf-stat--wide">
+            <span class="pf-stat-n">2025-26</span>
+            <span class="pf-stat-l">A.S. di inizio</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 1ATED -->
+  <section class="section section--mid pf-year" id="1ated">
+    <div class="container">
+
+      <div class="pf-year-header">
+        <div class="pf-year-label">
+          <span class="pf-year-badge">Anno scolastico 2025–26</span>
+          <h2 class="pf-year-title">1° Anno <span class="pf-year-code">— 1ATED</span></h2>
+        </div>
+        <div class="pf-year-line"></div>
+      </div>
+
+      <div class="pf-cards-grid">
+
+        <!-- RELAZIONI TECNICHE -->
+        <div class="pf-card">
+          <div class="pf-card-top">
+            <span class="pf-tag">Tecnica</span>
+            <h3>Relazioni Tecniche</h3>
+            <p>Documentazione tecnica scritta durante il primo anno: analisi, descrizioni di processi e componenti con metodo scientifico.</p>
+          </div>
+          <div class="pf-card-links">
+            <a href="https://sites.google.com/fermilecce.edu.it/relazioni-di-fisica-1ated/pagina-home" target="_blank" class="pf-link-row">
+              <span class="pf-link-icon">📄</span>
+              <span class="pf-link-text">Vai alle relazioni tecniche di Fisica</span>
+              <span class="pf-link-arrow">→</span>
+            </a>
+            <a href="https://sites.google.com/fermilecce.edu.it/relazioni-di-chimica-1ated/pagina-home" target="_blank" class="pf-link-row">
+              <span class="pf-link-icon">📄</span>
+              <span class="pf-link-text">Vai alle relazioni tecniche di Chimica</span>
+              <span class="pf-link-arrow">→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- SLIDE ED ESPOSIZIONI -->
+        <div class="pf-card">
+          <div class="pf-card-top">
+            <span class="pf-tag">Presentazione</span>
+            <h3>Slide ed Esposizioni</h3>
+            <p>Presentazioni su temi scientifici, storici e digitali. Ogni lavoro è il risultato di ricerca, sintesi e comunicazione efficace.</p>
+          </div>
+          <div class="pf-card-links">
+            <a href="apolloproject.html" target="_blank" class="pf-link-row">
+              <span class="pf-link-icon">🚀</span>
+              <span class="pf-link-text">Esposizione su Apollo</span>
+              <span class="pf-link-arrow">→</span>
+            </a>
+            <a href="pietromennea.html" target="_blank" class="pf-link-row">
+              <span class="pf-link-icon">🏃</span>
+              <span class="pf-link-text">Pietro Mennea</span>
+              <span class="pf-link-arrow">→</span>
+            </a>
+            <a href="ilphishing.html" target="_blank" class="pf-link-row">
+              <span class="pf-link-icon">🔐</span>
+              <span class="pf-link-text">Il Phishing</span>
+              <span class="pf-link-arrow">→</span>
+            </a>
+            <a href="glielementidieuclide.html" target="_blank" class="pf-link-row">
+              <span class="pf-link-icon">📐</span>
+              <span class="pf-link-text">Gli Elementi di Euclide</span>
+              <span class="pf-link-arrow">→</span>
+            </a>
+            <a href="archimedeedilgalleggiamento.html" target="_blank" class="pf-link-row">
+              <span class="pf-link-icon">⚗️</span>
+              <span class="pf-link-text">Archimede e il galleggiamento</span>
+              <span class="pf-link-arrow">→</span>
+            </a>
+            <a href="analisiepresentazionediduegeositi.html" target="_blank" class="pf-link-row">
+              <span class="pf-link-icon">🌍</span>
+              <span class="pf-link-text">Analisi di due Geositi</span>
+              <span class="pf-link-arrow">→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- RELAZIONI ED ATTIVITÀ -->
+        <div class="pf-card">
+          <div class="pf-card-top">
+            <span class="pf-tag">Scrittura</span>
+            <h3>Relazioni ed Attività</h3>
+            <p>Testi argomentativi, dialoghi e attività creative: scrittura come strumento di pensiero e comunicazione.</p>
+          </div>
+          <div class="pf-card-links">
+            <a href="enrichettalacks.html" target="_blank" class="pf-link-row">
+              <span class="pf-link-icon">🧬</span>
+              <span class="pf-link-text">L'immortalità di Henrietta Lacks</span>
+              <span class="pf-link-arrow">→</span>
+            </a>
+            <a href="JunJunSitoDialogoEMenu.html" target="_blank" class="pf-link-row">
+              <span class="pf-link-icon">🌐</span>
+              <span class="pf-link-text">Jun Jun: Sito, dialogo e menù</span>
+              <span class="pf-link-arrow">→</span>
+            </a>
+            <a href="ipoteticodialogotragiacobbeedio.html" target="_blank" class="pf-link-row">
+              <span class="pf-link-icon">✍️</span>
+              <span class="pf-link-text">Dialogo tra Giacobbe e Dio</span>
+              <span class="pf-link-arrow">→</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 2ATED -->
+  <section class="section section--dark pf-year" id="2ated">
+    <div class="container">
+
+      <div class="pf-year-header">
+        <div class="pf-year-label">
+          <span class="pf-year-badge">Anno scolastico 2026–27</span>
+          <h2 class="pf-year-title">2° Anno <span class="pf-year-code">— 2ATED</span></h2>
+        </div>
+        <div class="pf-year-line"></div>
+      </div>
+
+      <div class="pf-cards-grid">
+
+        <!-- RELAZIONI TECNICHE -->
+        <div class="pf-card">
+          <div class="pf-card-top">
+            <span class="pf-tag">Tecnica</span>
+            <h3>Relazioni Tecniche</h3>
+            <p>Documentazione tecnica scritta durante il secondo anno: analisi, descrizioni di processi e componenti con metodo scientifico.</p>
+          </div>
+          <div class="pf-card-links">
+            <a href="https://sites.google.com/fermilecce.edu.it/relazioni-di-fisica-2-ated/pagina-home" target="_blank" class="pf-link-row">
+              <span class="pf-link-icon">📄</span>
+              <span class="pf-link-text">Vai alle relazioni tecniche di Fisica</span>
+              <span class="pf-link-arrow">→</span>
+            </a>
+            <a href="https://sites.google.com/fermilecce.edu.it/relazioni-di-chimica-2-ated/pagina-home" target="_blank" class="pf-link-row">
+              <span class="pf-link-icon">📄</span>
+              <span class="pf-link-text">Vai alle relazioni tecniche di Chimica</span>
+              <span class="pf-link-arrow">→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- SLIDE ED ESPOSIZIONI -->
+        <div class="pf-card">
+          <div class="pf-card-top">
+            <span class="pf-tag">Presentazione</span>
+            <h3>Slide ed Esposizioni</h3>
+            <p>Presentazioni su temi scientifici, storici e digitali. Ogni lavoro è il risultato di ricerca, sintesi e comunicazione efficace.</p>
+          </div>
+          <div class="pf-card-links">
+            <a href="rita-levi-montalcini/index.html" target="_blank" class="pf-link-row">
+              <span class="pf-link-icon">🔬</span>
+              <span class="pf-link-text">Rita Levi Montalcini</span>
+              <span class="pf-link-arrow">→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- RELAZIONI ED ATTIVITÀ -->
+        <div class="pf-card">
+          <div class="pf-card-top">
+            <span class="pf-tag">Scrittura</span>
+            <h3>Relazioni ed Attività</h3>
+            <p>Testi argomentativi, dialoghi e attività creative: scrittura come strumento di pensiero e comunicazione.</p>
+          </div>
+          <div class="pf-card-links">
+            <a href="magazinedigitalecollaborativo.html" target="_blank" class="pf-link-row">
+              <span class="pf-link-icon">📰</span>
+              <span class="pf-link-text">Magazine Digitale Collaborativo - Unità 8</span>
+              <span class="pf-link-arrow">→</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 3ATED -->
+  <section class="section section--mid pf-year" id="3ated">
+    <div class="container">
+
+      <div class="pf-year-header">
+        <div class="pf-year-label">
+          <span class="pf-year-badge pf-year-badge--upcoming">Anno scolastico 2027–28</span>
+          <h2 class="pf-year-title">3° Anno <span class="pf-year-code">— 3ATED</span></h2>
+        </div>
+        <div class="pf-year-line"></div>
+      </div>
+
+      <div class="pf-coming-soon">
+        <div class="pf-cs-icon">🕐</div>
+        <h3>Prossimamente</h3>
+        <p>I lavori del terzo anno saranno aggiunti nel corso dell'anno scolastico 2027–28. Torna a visitare questa pagina per seguire gli aggiornamenti.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 4ATED -->
+  <section class="section section--dark pf-year" id="4ated">
+    <div class="container">
+
+      <div class="pf-year-header">
+        <div class="pf-year-label">
+          <span class="pf-year-badge pf-year-badge--upcoming">Anno scolastico 2028–29</span>
+          <h2 class="pf-year-title">4° Anno <span class="pf-year-code">— 4ATED</span></h2>
+        </div>
+        <div class="pf-year-line"></div>
+      </div>
+
+      <div class="pf-coming-soon">
+        <div class="pf-cs-icon">🕐</div>
+        <h3>Prossimamente</h3>
+        <p>I lavori del quarto anno saranno aggiunti nel corso dell'anno scolastico 2028–29. Torna a visitare questa pagina per seguire gli aggiornamenti.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="footer-logo">MP</span>
+        <p>Portfolio scolastico di Matteo Pascali — I.I.S.S. Enrico Fermi, Lecce. Liceo Scientifico delle Scienze Applicate Quadriennale.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Anni</h4>
+          <ul>
+            <li><a href="#1ated">1° Anno (1ATED)</a></li>
+            <li><a href="#2ated">2° Anno (2ATED)</a></li>
+            <li><a href="#3ated">3° Anno (3ATED)</a></li>
+            <li><a href="#4ated">4° Anno (4ATED)</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Navigazione</h4>
+          <ul>
+            <li><a href="../index.html">← Sito principale</a></li>
+            <li><a href="index.html#percorso">Il mio percorso</a></li>
+            <li><a href="index.html#contatti">Contatti</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Scuola</h4>
+          <ul>
+            <li><a href="https://www.fermilecce.edu.it" target="_blank">I.I.S.S. Fermi Lecce</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© Matteo Pascali 2026 — Tutti i diritti riservati</p>
+      <div class="footer-links">
+        <a href="../informativaprivacy.html">Informativa Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // INIZIALIZZAZIONE SUPABASE CON LE TUE CREDENZIALI
+    const SUPABASE_URL = 'https://ucnwhkynctrrvsbezwti.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVjbndoa3luY3RycnZzYmV6d3RpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE5NDgzMzAsImV4cCI6MjEwNzUyNDMzMH0.RqhJlK3T7kMaEHgHBu2gxe9RWP_OU9spzSXYhR8t340';
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    // Controlla la sessione all'avvio
+    if (sessionStorage.getItem("portfolio_authenticated") === "true") {
+      document.getElementById("authModal").style.display = "none";
+      document.body.classList.remove("modal-open");
+    }
+
+    async function validateAuth(e) {
+      e.preventDefault();
+      const val = document.getElementById("authPassword").value.trim();
+      const err = document.getElementById("authError");
+      const btn = document.getElementById("authSubmitBtn");
+
+      err.style.display = "none";
+      btn.disabled = true;
+      btn.textContent = "Verifica in corso...";
+
+      try {
+        // Query alla tabella 'passwords' di Supabase
+        const { data, error } = await supabaseClient
+          .from('passwords')
+          .select('password')
+          .eq('password', val)
+          .maybeSingle();
+
+        if (error) {
+          console.error("Errore Supabase:", error);
+          throw error;
+        }
+
+        if (data) {
+          // Password trovata nella tabella
+          sessionStorage.setItem("portfolio_authenticated", "true");
+          document.getElementById("authModal").style.display = "none";
+          document.body.classList.remove("modal-open");
+        } else {
+          // Password non trovata
+          err.style.display = "block";
+          document.getElementById("authPassword").value = "";
+        }
+      } catch (ex) {
+        err.textContent = "Errore di connessione al database. Riprova.";
+        err.style.display = "block";
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "Accedi";
+      }
+    }
+  </script>
+</body>
+</html>

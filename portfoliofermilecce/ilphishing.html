@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TX2XT0JTGL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TX2XT0JTGL');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Il Phishing - Documento di Lavoro</title>
+
+    <!-- Favicon SVG con iniziali MP -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231e2d3d'/><text x='50%' y='55%' dominant-baseline='central' text-anchor='middle' fill='%23ffffff' font-family='sans-serif' font-size='45' font-weight='bold'>MP</text></svg>">
+
+    <!-- Tailwind CSS per uno stile moderno e reattivo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        apollo: {
+                            50: '#f4f7f9',
+                            100: '#e9eff3',
+                            500: '#396d90', // Blu Acciaio (rgb: 57, 109, 144)
+                            600: '#2d5672', // Blu Acciaio scuro per hover
+                            900: '#1e2d3d'
+                        },
+                        sfondo: '#f0f2f5', // Grigio Chiaro (rgb: 240, 242, 245)
+                        bianco: '#ffffff'  // Bianco (rgb: 255, 255, 255)
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f0f2f5;
+            background-image: radial-gradient(circle at center, #ffffff 0%, #f0f2f5 100%);
+            min-height: 100vh;
+        }
+        /* Pannelli bianchi con ombreggiatura morbida e moderna */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow: 0 10px 25px -5px rgba(57, 109, 144, 0.08), 0 8px 10px -6px rgba(57, 109, 144, 0.08);
+        }
+        /* Nasconde la barra di scorrimento per il link ma permette lo swipe */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="text-slate-700 flex flex-col justify-center items-center min-h-screen p-4 md:p-6 font-sans antialiased">
+
+    <!-- Contenitore Centrale Unificato e Compatto (Perfettamente Centrato) -->
+    <div class="w-full max-w-md space-y-5 my-auto">
+        
+        <!-- Header Minimale -->
+        <header class="text-center space-y-1.5">
+            <h1 class="text-xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-apollo-500 to-apollo-900 leading-snug">
+                Il Phishing
+            </h1>
+            <p class="text-[10px] font-bold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-apollo-500 to-apollo-900 uppercase opacity-80">
+                Fatto da Matteo Pascali
+            </p>
+        </header>
+
+        <!-- Finestra in stile macOS Light -->
+        <div class="glass-panel rounded-xl p-3 shadow-xl transition-all duration-300 hover:border-apollo-500/20">
+            <!-- Barra Superiore stile Apple/Mac Light -->
+            <div class="flex items-center justify-between mb-2.5 px-1">
+                <div class="flex items-center space-x-1.5">
+                    <span class="w-2.5 h-2.5 rounded-full bg-red-400 inline-block"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-yellow-400 inline-block"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-green-400 inline-block"></span>
+                </div>
+                <div class="text-[10px] text-slate-400 font-mono tracking-tight max-w-[180px] truncate">
+                    matteos-work.my.canva.site
+                </div>
+                <div class="w-10"></div> <!-- Bilanciatore spaziale -->
+            </div>
+
+            <!-- Area cliccabile dell'anteprima -->
+            <a href="https://matteos-work.my.canva.site/il-phishing-matteo-pascali-1ated" target="_blank" rel="noopener noreferrer" class="group relative block w-full h-40 rounded-lg overflow-hidden bg-apollo-50 border border-slate-200/60 focus:outline-none focus:ring-2 focus:ring-apollo-500/30">
+                
+                <!-- Iframe di sfondo -->
+                <iframe src="https://matteos-work.my.canva.site/il-phishing-matteo-pascali-1ated" class="absolute inset-0 w-full h-full border-none pointer-events-none opacity-20 group-hover:opacity-30 transition-opacity duration-500" title="Anteprima Documento"></iframe>
+
+                <!-- Contenuto centrale invito all'azione -->
+                <div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center z-10 bg-white/40 group-hover:bg-white/10 transition-colors duration-300">
+                    <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center border border-slate-200 shadow-sm mb-2 group-hover:scale-105 group-hover:bg-apollo-50 group-hover:border-apollo-500/30 transition-all duration-300">
+                        <!-- Icona Documento / Link esterno -->
+                        <svg class="w-5 h-5 text-apollo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                        </svg>
+                    </div>
+                    <span class="text-xs font-semibold text-slate-700 group-hover:text-apollo-600 transition-colors duration-300">
+                        Clicca per aprire il progetto
+                    </span>
+                </div>
+
+                <!-- Overlay leggero al passaggio del mouse -->
+                <div class="absolute inset-0 bg-apollo-500/[0.03] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </a>
+        </div>
+
+        <!-- Riquadro Dati (Solo Link) -->
+        <div class="glass-panel rounded-xl p-4 shadow-lg space-y-2">
+            
+            <!-- Sezione Copia Link -->
+            <div class="flex flex-col space-y-1.5">
+                <span class="text-[10px] font-bold tracking-widest text-apollo-500 uppercase text-center sm:text-left">
+                    Link del Progetto
+                </span>
+                <div class="flex items-center space-x-2">
+                    <!-- Valore Link -->
+                    <div class="flex-grow bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 flex items-center overflow-x-auto whitespace-nowrap font-mono text-xs select-all no-scrollbar">
+                        <span id="link-text" class="text-slate-600">https://matteos-work.my.canva.site/il-phishing-matteo-pascali-1ated</span>
+                    </div>
+
+                    <!-- Pulsante Copia Link -->
+                    <button onclick="copiaDato('https://matteos-work.my.canva.site/il-phishing-matteo-pascali-1ated', 'btn-copia-link', 'testo-copia-link', 'icona-copia-link', 'icona-spunta-link')" id="btn-copia-link" class="flex items-center justify-center space-x-1 bg-apollo-500 hover:bg-apollo-600 text-white font-semibold px-3.5 py-2 rounded-lg transition-all duration-200 active:scale-95 focus:outline-none focus:ring-2 focus:ring-apollo-500/30 shrink-0">
+                        <svg id="icona-copia-link" class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path>
+                        </svg>
+                        <svg id="icona-spunta-link" class="w-3.5 h-3.5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span id="testo-copia-link" class="text-xs">Copia</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Feedback copia unico e discreto -->
+            <p id="notifica-successo" class="text-emerald-600 text-[10px] text-center mt-1 font-medium opacity-0 transition-opacity duration-300">
+                Link copiato negli appunti!
+            </p>
+        </div>
+
+    </div>
+
+    <!-- Script di Copia Sicura e Feedback -->
+    <script>
+        function copiaDato(testoDaCopiare, btnId, testoId, iconaCopiaId, iconaSpuntaId) {
+            const inputTemporaneo = document.createElement("input");
+            inputTemporaneo.value = testoDaCopiare;
+            document.body.appendChild(inputTemporaneo);
+            inputTemporaneo.select();
+            inputTemporaneo.setSelectionRange(0, 99999);
+            
+            try {
+                const copiato = document.execCommand('copy');
+                if (copiato) {
+                    mostraStatoSuccesso(btnId, testoId, iconaCopiaId, iconaSpuntaId);
+                }
+            } catch (err) {
+                console.error("Errore nella copia: ", err);
+            }
+            
+            document.body.removeChild(inputTemporaneo);
+        }
+
+        function mostraStatoSuccesso(btnId, testoId, iconaCopiaId, iconaSpuntaId) {
+            const btn = document.getElementById(btnId);
+            const testo = document.getElementById(testoId);
+            const iconaCopia = document.getElementById(iconaCopiaId);
+            const iconaSpunta = document.getElementById(iconaSpuntaId);
+            const notifica = document.getElementById("notifica-successo");
+
+            // Configura stato attivo (Successo)
+            btn.classList.replace("bg-apollo-500", "bg-emerald-600");
+            btn.classList.replace("hover:bg-apollo-600", "hover:bg-emerald-700");
+            testo.innerText = "Copiato";
+            
+            iconaCopia.classList.add("hidden");
+            iconaSpunta.classList.remove("hidden");
+            notifica.classList.replace("opacity-0", "opacity-100");
+
+            // Ripristina lo stato precedente dopo 2 secondi
+            setTimeout(() => {
+                btn.classList.replace("bg-emerald-600", "bg-apollo-500");
+                btn.classList.replace("hover:bg-emerald-700", "hover:bg-apollo-600");
+                testo.innerText = "Copia";
+                
+                iconaCopia.classList.remove("hidden");
+                iconaSpunta.classList.add("hidden");
+                notifica.classList.replace("opacity-100", "opacity-0");
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
