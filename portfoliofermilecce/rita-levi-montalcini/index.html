@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rita Levi-Montalcini - Aiuta gli altri, gli altri siamo noi</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔬</text></svg>">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Sfondo Multicolore reattivo al cursore -->
+    <div id="multicolorBg"></div>
+
+    <!-- Contenitore per tutte le immagini fluttuanti (image.jpg + 1.png..11.png) -->
+    <div id="floatingGallery" aria-hidden="true"></div>
+
+    <!-- Velatura leggera per mantenere il testo sempre leggibile -->
+    <div id="readabilityOverlay"></div>
+    
+    <!-- Canvas per la pioggia d'oro -->
+    <canvas id="particlesCanvas"></canvas>
+
+    <div class="content-wrapper">
+        <!-- HEADER DINAMICO -->
+        <header class="scroll-reveal" id="dynamicHeader">
+            <h1>Rita Levi-Montalcini</h1>
+            <h2>"Una vita per gli altri."</h2>
+        </header>
+
+        <!-- Contenitore Testi (COMPLETAMENTE SENZA CORNICI) -->
+        <main class="column-layout">
+            
+            <!-- Descrizione del film -->
+            <div class="text-section scroll-reveal bottom">
+                <h3>Il Film (2020)</h3>
+                <p>Diretto da Alberto Negrin, il film illustra lo snodo centrale della vita scientifica e umana della Montalcini: il periodo successivo al Premio Nobel del 1986.</p>
+                <p>Nonostante il prestigioso traguardo, Rita avverte un forte tormento: la sua straordinaria scoperta teorica sull'<strong id="ngfTrigger" class="ngf-link" role="button" tabindex="0" aria-expanded="false" aria-controls="ngfPopover">NGF (Fattore di Accrescimento Nervoso)</strong> non ha ancora un'applicazione clinica diretta. L'incontro con Elena, una giovane violinista a rischio cecità, la spinge a tornare in laboratorio. Trasformando la molecola in una terapia oculare, riuscirà a salvare la vista della ragazza, dimostrando che la ricerca pura trova il suo compimento ideale quando si traduce in cura.</p>
+            </div>
+
+            <!-- Sezione 1 -->
+            <div class="text-section scroll-reveal left">
+                <h3>1. Collegamenti Storici</h3>
+                <ul>
+                    <li><strong>1938 - Leggi Razziali:</strong> A causa delle leggi fasciste viene espulsa dall'università. Rifiuta di arrendersi e continua a studiare e fare ricerca in segreto.</li>
+                    <li><strong>1940-1943 - Laboratorio Clandestino:</strong> Durante la Seconda Guerra Mondiale, allestisce un piccolo laboratorio nella sua camera da letto per studiare il sistema nervoso.</li>
+                    <li><strong>1944 - Impegno nella Croce Rossa:</strong> Rifugiata a Firenze, affronta l'emergenza prestando soccorso come medico volontario per assistere i profughi.</li>
+                    <li><strong>Dopoguerra - Riscatto Femminile:</strong> Si afferma a livello mondiale in un'epoca in cui il ruolo delle donne nel mondo accademico e scientifico era marginalizzato.</li>
+                </ul>
+            </div>
+            
+            <!-- Sezione 2 -->
+            <div class="text-section scroll-reveal right">
+                <h3>2. Insegnamenti</h3>
+                <ul>
+                    <li><strong>Il Valore dell'Errore (Resilienza):</strong> Ha insegnato che gli ostacoli, le difficoltà e i fallimenti non sono blocchi, ma tappe necessarie per raggiungere le grandi scoperte.</li>
+                    <li><strong>La Forza dello Spirito sul Corpo:</strong> La passione e la curiosità intellettuale superano i limiti dell'invecchiamento fisico.</li>
+                    <li><strong>Pari Opportunità:</strong> Un impegno costante per supportare e garantire l'istruzione e l'emancipazione delle giovani donne.</li>
+                    <li><strong>L'Indipendenza di Pensiero (Il Coraggio di Scegliere):</strong> Non ha mai lasciato che fossero gli altri o le convenzioni sociali a decidere il suo destino, a partire dalla scelta di studiare medicina nonostante il parere contrario del padre. Insegna a seguire la propria vocazione anche quando significa andare controcorrente.</li>
+                </ul>
+            </div>
+
+            <!-- Sezione 3 -->
+            <div class="text-section scroll-reveal left">
+                <h3>3. Riflessioni</h3>
+                <ul>
+                    <li><strong>Il Senso di Comunità:</strong> "Aiutare gli altri, gli altri siamo noi" significa riconoscere che il benessere individuale è strettamente connesso a quello collettivo. Non c'è identità isolata.</li>
+                    <li><strong>L'Etica della Scienza:</strong> La vicenda della violinista Elena dimostra che la conoscenza scientifica non deve essere un esercizio di potere, ma un bene da condividere per tutelare la dignità umana.</li>
+                </ul>
+            </div>
+
+            <!-- Sezione 4 -->
+            <div class="text-section scroll-reveal right">
+                <h3>4. Considerazioni</h3>
+                <ul>
+                    <li><strong>Scienza e Solidarietà:</strong> La figura della Montalcini ci insegna che il rigore della ricerca pura trova il suo compimento ideale solo quando si traduce in un aiuto concreto al prossimo.</li>
+                    <li><strong>Eredità per i Giovani:</strong> La sua vita rappresenta un modello attualissimo di impegno civile. Ci invita a usare il sapere per abbattere le disuguaglianze e costruire una società basata sull'empatia.</li>
+                </ul>
+            </div>
+        </main>
+
+        <footer class="scroll-reveal bottom">
+            <p>Realizzato da Matteo Pascali, Giovanni Attanasio, Gabriele Tommasi e Alessandro Verri.</p>
+            <p>Classe <strong>2ATED</strong> - IISS "Enrico Fermi" Lecce</p>
+        </footer>
+    </div>
+
+    <!-- Mini approfondimento su NGF -->
+    <div id="ngfBackdrop" class="ngf-backdrop" hidden>
+        <div id="ngfPopover" class="ngf-card" role="dialog" aria-modal="true" aria-labelledby="ngfTitle">
+            <button type="button" id="ngfClose" class="ngf-close" aria-label="Chiudi approfondimento">&times;</button>
+            <h4 id="ngfTitle">Mini Approfondimento: NGF</h4>
+            <p>Scoperto da Rita Levi-Montalcini negli anni '50 insieme a Stanley Cohen (scoperta che valse loro il <strong>Premio Nobel per la Medicina nel 1986</strong>), l'<strong>NGF (Nerve Growth Factor)</strong> è una proteina essenziale che guida la crescita, il mantenimento e la sopravvivenza delle cellule nervose.</p>
+            <p>Oltre ad aver rivoluzionato le neuroscienze, ha permesso di sviluppare terapie innovative, come i <strong>colliri a base di NGF</strong> per rigenerare i tessuti oculari e salvare la vista (proprio come nella vicenda della violinista Elena), aprendo nuove strade anche contro malattie neurodegenerative come l'Alzheimer.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
